@@ -13,9 +13,12 @@ def dumb(lines):
 def Cify(text):
 	return """#include <stdio.h>
 int main() {
-	printf(\""""+repr(text)[1:-1]+"""\");
+	printf(\""""+escape(text)+"""\");
 	return 0;
 }"""
+
+def escape(text):
+	return repr(text)[1:-1].replace('"','\\"') #yup that should do it
 
 def interpretline(line):
 	return "Hello, Hello!" if line=="hh" else "World, World!" if line=="ww" else "Hello, World!" if line=="hw" else "World, Hello!" if line=="wh" else "Hello!" if line=="h" else "World!" if line=="w" else line
